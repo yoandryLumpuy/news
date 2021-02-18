@@ -97,7 +97,8 @@ namespace news_api
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(Constants.PolicyNameAdmin, policyBuilder => { policyBuilder.RequireRole(Constants.RoleNameAdmin); });
-                options.AddPolicy(Constants.PolicyNameNormalAccess, policyBuilder => { policyBuilder.RequireRole(Constants.RoleNameAdmin, Constants.RoleNameNormalUser); });
+                options.AddPolicy(Constants.PolicyNameNormalAccess, policyBuilder => 
+                    { policyBuilder.RequireRole(Constants.RoleNameAdmin, Constants.RoleNameNormalUser); });
             }); 
         }
 

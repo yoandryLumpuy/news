@@ -19,6 +19,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatSortModule } from "@angular/material/sort";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   exports:[
@@ -41,7 +42,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatListModule,
     MatSortModule,
     LayoutModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule
   ]
 })
 export class MatModule { }

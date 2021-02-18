@@ -1,6 +1,8 @@
-namespace news_api.DataTransferObjects
+
+
+namespace news_api.ViewModel
 {
-    public class ArticleSourceDto
+    public class ArticleSourceViewModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -1,7 +1,7 @@
 ﻿
-namespace news_api.DataTransferObjects
+namespace news_api.ViewModel
 {
-    public class UserForListDto
+    public class UserForListViewModel
     {
         public int Id { get; set; }
 

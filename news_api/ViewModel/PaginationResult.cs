@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace news_api.DataTransferObjects
+namespace news_api.ViewModel
 {
     public class PaginationResult<T> where T : class, new()
     {

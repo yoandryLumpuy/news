@@ -35,5 +35,23 @@ namespace news_api.Extensions
                 result.Add(new KeyValuePair<int, string>((int)elem, elem.ToString()));
             return result;
         }
+
+        public static IIncludableQueryable<QueryObjectEverythingRequest, object> EagerLoadRelatedObjects(
+            this DbSet<QueryObjectEverythingRequest> dbSetQueryObjectEverythingRequest, bool includeRelated = true){
+            if (includeRelated)
+               return dbSetQueryObjectEverythingRequest
+                        .Include(res => res.CreatedByUser);
+
+            return dbSetQueryObjectEverythingRequest.Include(r => r);             
+        }
+
+        public static IIncludableQueryable<QueryObjectTopHeadLinesRequest, object> EagerLoadRelatedObjects(
+            this DbSet<QueryObjectTopHeadLinesRequest> dbSetQueryObjectTopHeadLinesRequest, bool includeRelated = true){
+            if (includeRelated)
+               return dbSetQueryObjectTopHeadLinesRequest
+                        .Include(res => res.CreatedByUser);
+
+            return dbSetQueryObjectTopHeadLinesRequest.Include(r => r);             
+        }
     }
 }

@@ -13,7 +13,10 @@ namespace news_api.EntityConfigurations
                 .WithMany(user => user.TopHeadLinesRequests)
                 .HasForeignKey(ur => ur.CreatedByUserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);            
+                .OnDelete(DeleteBehavior.Cascade);  
+
+            builder.Property(queryObject => queryObject.Sources) 
+            .HasMaxLength(500);           
         }
     }
 }

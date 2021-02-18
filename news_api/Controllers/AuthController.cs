@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using news_api.Core.Model;
-using news_api.DataTransferObjects;
+using news_api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,7 @@ namespace news_api.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]UserForLoginDto userForLoginDto)
+        public async Task<IActionResult> Login([FromBody]UserForLoginViewModel userForLoginDto)
         {
             var user = await _userManager.FindByNameAsync(userForLoginDto.UserName);
 
@@ -50,7 +50,7 @@ namespace news_api.Controllers
 
             if (!signInResult.Succeeded) return Unauthorized("Wrong password!. Try again.");
 
-            var userToListDto = _mapper.Map<UserForListDto>(user);
+            var userToListDto = _mapper.Map<UserForListViewModel>(user);
             return Ok(new
             {
                 Token = await GenerateTokenAsync(user),
@@ -61,7 +61,7 @@ namespace news_api.Controllers
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody]UserForLoginDto userForLoginDto)
+        public async Task<IActionResult> Register([FromBody]UserForLoginViewModel userForLoginDto)
         {
             var userApp = _mapper.Map<User>(userForLoginDto);
             var identityResult = await _userManager.CreateAsync(userApp, userForLoginDto.Password);
@@ -69,7 +69,7 @@ namespace news_api.Controllers
             if (identityResult.Succeeded)
             {
                 await _userManager.AddToRoleAsync(userApp, Constants.RoleNameNormalUser);                                
-                var userToReturn = _mapper.Map<UserForListDto>(userApp);
+                var userToReturn = _mapper.Map<UserForListViewModel>(userApp);
                 return Ok(userToReturn);
             }
 

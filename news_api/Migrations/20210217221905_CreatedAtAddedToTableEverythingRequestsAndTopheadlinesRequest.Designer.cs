@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using news_api.Persistence;
 
 namespace news_api.Migrations
 {
     [DbContext(typeof(NewsDbContext))]
-    partial class NewsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210217221905_CreatedAtAddedToTableEverythingRequestsAndTopheadlinesRequest")]
+    partial class CreatedAtAddedToTableEverythingRequestsAndTopheadlinesRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,9 +120,6 @@ namespace news_api.Migrations
                     b.Property<int>("CreatedByUserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Domains")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("From")
                         .HasColumnType("datetime2");
 
@@ -138,10 +137,6 @@ namespace news_api.Migrations
 
                     b.Property<int?>("SortBy")
                         .HasColumnType("int");
-
-                    b.Property<string>("Sources")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime?>("To")
                         .HasColumnType("datetime2");
@@ -183,10 +178,6 @@ namespace news_api.Migrations
 
                     b.Property<string>("Q")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sources")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 

@@ -1,7 +1,6 @@
 import { NewsComponent } from './_components/news/news.component';
 import { QueryTracesComponent } from './_components/query-traces/query-traces.component';
 import { AdminUsersComponent } from './_components/admin-users/admin-users.component';
-import { ContactListComponent } from './_components/contact-list/contact-list.component';
 import { StringsLimitedPipe } from './_pipes/strings-limited.pipe';
 import { ConfirmDialogComponent } from './_services/confirm-dialog/confirm-dialog.component';
 import { AlertComponent } from './_services/alert/alert.component';
@@ -22,6 +21,7 @@ import {MatModule} from './_modules/mat.module';
 import { MAT_SNACK_BAR_DATA, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { UploadProgressInterceptorService } from './_services/upload-progress-interceptor.service';
 import { LoginComponent } from './_components/login/login.component';
+import { EditRolesDialogComponent } from './_components/admin-users/edit-roles-dialog/edit-roles-dialog.component';
 
 @NgModule({
   declarations: [					
@@ -30,11 +30,11 @@ import { LoginComponent } from './_components/login/login.component';
       AlertComponent, 
       ConfirmDialogComponent,
       StringsLimitedPipe,
-      LoginComponent,      
-      ContactListComponent,
+      LoginComponent, 
       AdminUsersComponent,
       QueryTracesComponent,
-      NewsComponent
+      NewsComponent,
+      EditRolesDialogComponent
    ],
   imports: [
     BrowserModule, 

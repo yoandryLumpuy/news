@@ -1,7 +1,7 @@
 ﻿
-namespace news_api.DataTransferObjects
+namespace news_api.ViewModel
 {
-    public class UserForLoginDto
+    public class UserForLoginViewModel
     {
         public string UserName { get; set; }
         public string Password { get; set; }

@@ -1,0 +1,18 @@
+<h1 mat-dialog-title> Edit Roles for user: {{data.userName}} </h1>
+<div mat-dialog-content>
+  <section>    
+    <span class="example-list-section">
+      <ul>
+        <li *ngFor="let role of data.roles">
+          <mat-checkbox [(ngModel)]="role.checked">
+            {{role.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </span>
+  </section> 
+</div>
+<div mat-dialog-actions>  
+  <button mat-button [mat-dialog-close]="data.roles" cdkFocusInitial>Ok</button>
+  <button mat-button (click) = "onClose()">Cancel</button>
+</div>

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using news_api.Core.Model;
-using news_api.DataTransferObjects;
+using news_api.ViewModel;
 using news_api.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Reservation_API.Persistence;
+using AutoMapper;
 
 namespace news_api.Controllers
 {
@@ -18,10 +20,14 @@ namespace news_api.Controllers
     public class AdminController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
+        private readonly IRepository _repository;
+        private readonly IMapper _mapper;
 
-        public AdminController(UserManager<User> userManager)
+        public AdminController(UserManager<User> userManager, IRepository repository, IMapper mapper)
         {
             _userManager = userManager;
+            _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet("roles")]
@@ -37,7 +43,7 @@ namespace news_api.Controllers
 
         [HttpPost("editRoles/{userName}")]
         [Authorize(Policy = Constants.PolicyNameAdmin)]
-        public async Task<IActionResult> UpdateUserRoles(string userName, EditUserRolesDto editUserRolesDto)
+        public async Task<IActionResult> UpdateUserRoles(string userName, EditUserRolesViewModel editUserRolesDto)
         {             
             var user = await _userManager.FindByNameAsync(userName);
             if (user == null) return NotFound("User not found!");
@@ -52,6 +58,14 @@ namespace news_api.Controllers
             if (!result.Succeeded) return BadRequest("Failed removing roles from the user");
 
             return Ok(await _userManager.GetRolesAsync(user));
+        }
+
+        [HttpPost("users", Name = "GetUsers")]
+        [Authorize(Policy = Constants.PolicyNameAdmin)]
+        public async Task<IActionResult> GetUsers([FromQuery] QueryObject queryObject)
+        {  
+           var usersFromDbContext = await _repository.GetUsers(queryObject);
+           return Ok(_mapper.Map<PaginationResult<UserForListViewModel>>(usersFromDbContext));
         }
     }
 }

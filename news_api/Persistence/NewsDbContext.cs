@@ -16,6 +16,8 @@ namespace news_api.Persistence
         {
             base.OnModelCreating(builder);                        
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new QueryObjectEverythingRequestConfiguration());
+            builder.ApplyConfiguration(new QueryObjectTopHeadLinesRequestConfiguration());
         }
     }
 }

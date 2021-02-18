@@ -1,10 +1,10 @@
 using System;
 
-namespace news_api.DataTransferObjects
+namespace news_api.ViewModel
 {
-    public class ArticleDto
+    public class ArticleViewModel  
     {
-        public ArticleSourceDto Source { get; set; }
+        public ArticleSourceViewModel Source { get; set; }
         public string Author { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
