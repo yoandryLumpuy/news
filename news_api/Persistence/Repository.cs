@@ -49,9 +49,9 @@ namespace Reservation_API.Persistence
                 [Constants.SortByCreatedByUser] = request => request.CreatedByUser.UserName,
                 [Constants.SortByQ] = request => request.Q,
                 [Constants.SortByCreatedAt] = request => request.CreatedAt,
-                [Constants.SortByLanguage] = request => request.Language.HasValue ? request.Language.Value : -1,
+                [Constants.SortByLanguage] = request => request.Language,
                 [Constants.SortByFromDatetime] = request => request.From,
-                [Constants.SortByToDatetime] = request => request.To                
+                [Constants.SortByToDatetime] = request => request.To               
             };
 
             if (queryObject?.SortBy != null && dictionary.ContainsKey(queryObject.SortBy))
@@ -72,9 +72,9 @@ namespace Reservation_API.Persistence
                 [Constants.SortByCreatedByUser] = request => request.CreatedByUser.UserName,
                 [Constants.SortByQ] = request => request.Q,
                 [Constants.SortByCreatedAt] = request => request.CreatedAt,
-                [Constants.SortByLanguage] = request => request.Language.HasValue ? request.Language.Value : -1,
-                [Constants.SortByCategory] = request => request.Category.HasValue ? request.Category.Value : -1,
-                [Constants.SortByCountry] = request => request.Country.HasValue ? request.Country.Value : -1               
+                [Constants.SortByLanguage] = request => request.Language,
+                [Constants.SortByCategory] = request => request.Category,
+                [Constants.SortByCountry] = request => request.Country               
             };
 
             if (queryObject?.SortBy != null && dictionary.ContainsKey(queryObject.SortBy))

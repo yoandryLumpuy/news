@@ -1,0 +1,29 @@
+<mat-grid-list [cols]="inSmallScreen ? '1' : '6'" rowHeight="100px" gutterSize="0">    
+    <mat-grid-tile *ngIf="!inSmallScreen" [colspan]="1" [rowspan]="2"></mat-grid-tile>
+
+    <mat-grid-tile *ngIf="!inSmallScreen" [colspan]="1" [rowspan]="2">    
+      <span><small>{{article.publishedAt | date:'full'}}</small></span>       
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="!inSmallScreen ? 2 : 1" [rowspan]="1" >      
+      <span>
+        <p><small>{{article.source.name}}</small></p>
+        <p><a href="{{article.url}}">{{article.title}}</a></p>
+      </span>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="!inSmallScreen ? 2 : 1" >      
+      <span>
+        <img [src]="article.urlToImage"> 
+      </span>
+    </mat-grid-tile>
+
+  <mat-grid-tile *ngIf="!inSmallScreen" [colspan]="1" [rowspan]="2"></mat-grid-tile>
+
+  <mat-grid-tile [colspan]="!inSmallScreen ? 2 : 1" [rowspan]="1" >      
+    <span>
+      <p>{{article.description | stringsLimited:50}}</p>
+      <p><small>By: {{article.author}}</small></p>
+    </span>
+  </mat-grid-tile>  
+</mat-grid-list>

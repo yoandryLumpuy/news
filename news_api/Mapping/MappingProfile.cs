@@ -14,7 +14,7 @@ namespace Reservation_API.Mapping
         {
             //from View Model to Domain Model 
             CreateMap<UserForLoginViewModel, User>();             
-            CreateMap<EverythingRequest, QueryObjectEverythingRequest>()
+            CreateMap<EverythingRequest, QueryObjectEverythingRequest>()                
                 .ForMember(target => target.Sources, 
                     opt => opt.MapFrom(source => source.Sources == null || source.Sources.Count == 0 
                                                  ? string.Empty 
@@ -22,12 +22,24 @@ namespace Reservation_API.Mapping
                 .ForMember(target => target.Domains, 
                     opt => opt.MapFrom(source => source.Domains == null || source.Domains.Count == 0 
                                                  ? string.Empty 
-                                                 : string.Join(',', source.Domains)));
+                                                 : string.Join(',', source.Domains)))
+                .ForMember(target => target.Language, 
+                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty : source.Language.ToString()))
+                .ForMember(target => target.SortBy,  
+                        opt => opt.MapFrom(source => !source.SortBy.HasValue ? string.Empty : source.SortBy.ToString()));
+
             CreateMap<TopHeadlinesRequest, QueryObjectTopHeadLinesRequest>()
+                .ForMember(target => target.Sources, opt => opt.Ignore())
                 .ForMember(target => target.Sources, 
                     opt => opt.MapFrom(source => source.Sources == null || source.Sources.Count == 0 
                                                  ? string.Empty 
-                                                 : string.Join(',', source.Sources)));
+                                                 : string.Join(',', source.Sources)))
+                .ForMember(target => target.Language, 
+                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty : source.Language.ToString()))
+                .ForMember(target => target.Category, 
+                        opt => opt.MapFrom(source => !source.Category.HasValue ? string.Empty : source.Category.ToString()))
+                .ForMember(target => target.Country, 
+                        opt => opt.MapFrom(source => !source.Country.HasValue ? string.Empty : source.Country.ToString()));
 
 
             //from Domain Model to View Model    
@@ -47,20 +59,10 @@ namespace Reservation_API.Mapping
                         ExtensionMethods.GetEnumStringValues<Statuses>().FirstOrDefault(elem => (Statuses)elem.Key == articleResult.Status).Value));
 
             CreateMap<QueryObjectEverythingRequest, QueryObjectEverythingRequestViewModel>()
-                .ForMember(target => target.CreatedByUser, opt => opt.MapFrom(source => source.CreatedByUser.UserName))
-                .ForMember(target => target.Language, 
-                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty : source.Language.ToString()))
-                .ForMember(target => target.SortBy,  
-                        opt => opt.MapFrom(source => !source.SortBy.HasValue ? string.Empty : source.SortBy.ToString()));
+                .ForMember(target => target.CreatedByUser, opt => opt.MapFrom(source => source.CreatedByUser.UserName));
 
             CreateMap<QueryObjectTopHeadLinesRequest, QueryObjectTopHeadLinesRequestViewModel>()
-                .ForMember(target => target.CreatedByUser, opt => opt.MapFrom(source => source.CreatedByUser.UserName))
-                .ForMember(target => target.Language, 
-                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty : source.Language.ToString()))
-                .ForMember(target => target.Category, 
-                        opt => opt.MapFrom(source => !source.Category.HasValue ? string.Empty : source.Category.ToString()))
-                .ForMember(target => target.Country, 
-                        opt => opt.MapFrom(source => !source.Country.HasValue ? string.Empty : source.Country.ToString()));
+                .ForMember(target => target.CreatedByUser, opt => opt.MapFrom(source => source.CreatedByUser.UserName));
 
             CreateMap(typeof(PaginationResult<>), typeof(PaginationResult<>));              
         }

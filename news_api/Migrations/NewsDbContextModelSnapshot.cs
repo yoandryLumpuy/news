@@ -124,8 +124,8 @@ namespace news_api.Migrations
                     b.Property<DateTime?>("From")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Language")
-                        .HasColumnType("int");
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Page")
                         .HasColumnType("int");
@@ -136,12 +136,11 @@ namespace news_api.Migrations
                     b.Property<string>("Q")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SortBy")
-                        .HasColumnType("int");
+                    b.Property<string>("SortBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sources")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("To")
                         .HasColumnType("datetime2");
@@ -160,11 +159,11 @@ namespace news_api.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("Category")
-                        .HasColumnType("int");
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Country")
-                        .HasColumnType("int");
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -172,8 +171,8 @@ namespace news_api.Migrations
                     b.Property<int>("CreatedByUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Language")
-                        .HasColumnType("int");
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Page")
                         .HasColumnType("int");
@@ -185,8 +184,7 @@ namespace news_api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sources")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

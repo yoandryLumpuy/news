@@ -1,6 +1,7 @@
 ﻿using NewsApiClientClasses.Constants;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,11 @@ namespace NewsApiClientClasses.Models
         /// <summary>
         /// If you want to restrict the search to specific sources, add their Ids here. You can find source Ids with the /sources endpoint or on newsapi.org.
         /// </summary>
-        public List<string> Sources = new List<string>();
+        public virtual List<string> Sources {get; set;} = new List<string>();
         /// <summary>
         /// If you want to restrict the search to specific web domains, add these here. Example: nytimes.com.
         /// </summary>
-        public List<string> Domains = new List<string>();
+        public virtual List<string> Domains {get; set;} = new List<string>();
         /// <summary>
         /// The earliest date to retrieve articles from. Note that how far back you can go is constrained by your plan type. See newsapi.org/pricing for plan details.
         /// </summary>

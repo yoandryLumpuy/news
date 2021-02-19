@@ -1,3 +1,5 @@
+import { QueryTracesTopheadlinesRequestsComponent } from './_components/query-traces-topheadlines-requests/query-traces-topheadlines-requests.component';
+import { QueryTracesEverythingRequestsComponent } from './_components/query-traces-everything-requests/query-traces-everything-requests.component';
 import { NewsComponent } from './_components/news/news.component';
 import { QueryTracesComponent } from './_components/query-traces/query-traces.component';
 import { AdminUsersComponent } from './_components/admin-users/admin-users.component';
@@ -22,6 +24,7 @@ import { MAT_SNACK_BAR_DATA, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mate
 import { UploadProgressInterceptorService } from './_services/upload-progress-interceptor.service';
 import { LoginComponent } from './_components/login/login.component';
 import { EditRolesDialogComponent } from './_components/admin-users/edit-roles-dialog/edit-roles-dialog.component';
+import { ArticleComponent } from './_components/article/article.component';
 
 @NgModule({
   declarations: [					
@@ -34,7 +37,10 @@ import { EditRolesDialogComponent } from './_components/admin-users/edit-roles-d
       AdminUsersComponent,
       QueryTracesComponent,
       NewsComponent,
-      EditRolesDialogComponent
+      EditRolesDialogComponent,
+      QueryTracesEverythingRequestsComponent,
+      QueryTracesTopheadlinesRequestsComponent,
+      ArticleComponent
    ],
   imports: [
     BrowserModule, 

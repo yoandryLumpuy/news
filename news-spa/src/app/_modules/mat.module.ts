@@ -20,6 +20,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatTabsModule } from "@angular/material/tabs";
 
 @NgModule({
   exports:[
@@ -43,7 +44,8 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatSortModule,
     LayoutModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ]
 })
 export class MatModule { }

@@ -8,15 +8,14 @@ namespace news_api.EntityConfigurations
     {     
         public QueryObjectEverythingRequestConfiguration(){}
         public void Configure(EntityTypeBuilder<QueryObjectEverythingRequest> builder)
-        {            
+        {
+            builder.HasKey(elem => elem.Id);          
+
             builder.HasOne(ur => ur.CreatedByUser)
                 .WithMany(user => user.EverythingRequests)
                 .HasForeignKey(ur => ur.CreatedByUserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);  
-
-            builder.Property(queryObject => queryObject.Sources) 
-            .HasMaxLength(500);   
         }
     }
 }

@@ -161,11 +161,14 @@ namespace news_api.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Q = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sources = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Domains = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     From = table.Column<DateTime>(type: "datetime2", nullable: true),
                     To = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Language = table.Column<int>(type: "int", nullable: true),
-                    SortBy = table.Column<int>(type: "int", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SortBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Page = table.Column<int>(type: "int", nullable: false),
                     PageSize = table.Column<int>(type: "int", nullable: false)
                 },
@@ -187,10 +190,12 @@ namespace news_api.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Q = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Category = table.Column<int>(type: "int", nullable: true),
-                    Language = table.Column<int>(type: "int", nullable: true),
-                    Country = table.Column<int>(type: "int", nullable: true),
+                    Sources = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Page = table.Column<int>(type: "int", nullable: false),
                     PageSize = table.Column<int>(type: "int", nullable: false)
                 },

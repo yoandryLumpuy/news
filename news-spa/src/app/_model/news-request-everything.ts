@@ -7,5 +7,5 @@ export interface NewsRequestEverything{
         from? : Date;
         to? : Date;
         language? : number;
-        sortBy : number;        
+        sortBy? : number;        
 }

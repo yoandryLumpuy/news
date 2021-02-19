@@ -1,6 +1,7 @@
 ﻿using NewsApiClientClasses.Constants;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace NewsApiClientClasses.Models
         /// <summary>
         /// If you want to restrict the results to specific sources, add their Ids here. You can find source Ids with the /sources endpoint or on newsapi.org.
         /// </summary>
-        public List<string> Sources = new List<string>();
+        public virtual List<string> Sources {get; set;} = new List<string>();
         /// <summary>
         /// If you want to restrict the headlines to a specific news category, add these here.
         /// </summary>

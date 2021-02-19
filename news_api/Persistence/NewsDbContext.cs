@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using news_api.Core.Model;
 using news_api.EntityConfigurations;
+using NewsApiClientClasses.Models;
 
 namespace news_api.Persistence
 {
@@ -14,7 +15,7 @@ namespace news_api.Persistence
         { }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);                        
+            base.OnModelCreating(builder); 
             builder.ApplyConfiguration(new UserRoleConfiguration());
             builder.ApplyConfiguration(new QueryObjectEverythingRequestConfiguration());
             builder.ApplyConfiguration(new QueryObjectTopHeadLinesRequestConfiguration());
