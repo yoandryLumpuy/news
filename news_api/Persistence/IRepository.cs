@@ -17,10 +17,10 @@ namespace Reservation_API.Persistence
         Task<QueryObjectEverythingRequest> GetQueryObjectEverythingRequestAsync(int id);
         Task<QueryObjectTopHeadLinesRequest> GetQueryObjectTopHeadLinesRequestAsync(int id);   
 
-        Task<PaginationResult<User>> GetUsers(QueryObject queryObject);   
+        Task<PaginationResult<User>> GetUsersAsync(QueryObject queryObject);   
 
-        Task<PaginationResult<QueryObjectEverythingRequest>> GetTracesEverythingRequests(QueryObject queryObject);   
+        Task<PaginationResult<QueryObjectEverythingRequest>> GetTracesEverythingRequestsAsync(QueryObject queryObject);   
 
-        Task<PaginationResult<QueryObjectTopHeadLinesRequest>> GetTracesTopheadlinesRequests(QueryObject queryObject);     
+        Task<PaginationResult<QueryObjectTopHeadLinesRequest>> GetTracesTopheadlinesRequestsAsync(QueryObject queryObject);     
     }
 }

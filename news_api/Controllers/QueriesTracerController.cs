@@ -24,8 +24,8 @@ namespace news_api.Controllers
         
         [HttpGet("everythingRequest", Name = "GetEverythingRequest")]
         [Authorize(Policy = Constants.PolicyNameAdmin)]
-        public async Task<IActionResult> GetEverythingRequest(QueryObject queryObject){
-            var paginatedResultsFromDb = await _repository.GetTracesEverythingRequests(queryObject);
+        public async Task<IActionResult> GetEverythingRequest([FromQuery]QueryObject queryObject){
+            var paginatedResultsFromDb = await _repository.GetTracesEverythingRequestsAsync(queryObject);
             var mappedResults 
                 = _mapper.Map<PaginationResult<QueryObjectEverythingRequest>,PaginationResult<QueryObjectEverythingRequestViewModel>>(paginatedResultsFromDb);
             return Ok(mappedResults);
@@ -33,8 +33,8 @@ namespace news_api.Controllers
 
         [HttpGet("topheadlinesRequest", Name = "GetTopheadlinesRequest")]
         [Authorize(Policy = Constants.PolicyNameAdmin)]
-        public async Task<IActionResult> GetTopheadlinesRequest(QueryObject queryObject){
-            var paginatedResultsFromDb = await _repository.GetTracesTopheadlinesRequests(queryObject);
+        public async Task<IActionResult> GetTopheadlinesRequest([FromQuery]QueryObject queryObject){
+            var paginatedResultsFromDb = await _repository.GetTracesTopheadlinesRequestsAsync(queryObject);
             var mappedResults 
                 = _mapper.Map<PaginationResult<QueryObjectTopHeadLinesRequest>,PaginationResult<QueryObjectTopHeadLinesRequestViewModel>>(paginatedResultsFromDb);
             return Ok(mappedResults);

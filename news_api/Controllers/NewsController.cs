@@ -52,7 +52,7 @@ namespace news_api.Controllers
                 return Ok(articlesResponseDto);   
             }
 
-            return BadRequest("An error has occured retreiving news");
+            return BadRequest(articlesResponse.Error.Message);
         }
 
         [Authorize(Policy = Constants.PolicyNameNormalAccess)]
@@ -71,7 +71,7 @@ namespace news_api.Controllers
                 return Ok(articlesResponseDto);   
             }
 
-            return BadRequest("An error has occured retreiving news");
+            return BadRequest(articlesResponse.Error.Message);
         }
     }
 }

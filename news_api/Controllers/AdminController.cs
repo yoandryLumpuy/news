@@ -60,11 +60,11 @@ namespace news_api.Controllers
             return Ok(await _userManager.GetRolesAsync(user));
         }
 
-        [HttpPost("users", Name = "GetUsers")]
+        [HttpGet("users", Name = "GetUsers")]
         [Authorize(Policy = Constants.PolicyNameAdmin)]
         public async Task<IActionResult> GetUsers([FromQuery] QueryObject queryObject)
         {  
-           var usersFromDbContext = await _repository.GetUsers(queryObject);
+           var usersFromDbContext = await _repository.GetUsersAsync(queryObject);
            return Ok(_mapper.Map<PaginationResult<UserForListViewModel>>(usersFromDbContext));
         }
     }

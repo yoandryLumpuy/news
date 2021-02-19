@@ -41,7 +41,7 @@ namespace Reservation_API.Persistence
                            .FirstOrDefaultAsync(elem => elem.Id == id);
         }
 
-        public async Task<PaginationResult<QueryObjectEverythingRequest>> GetTracesEverythingRequests(QueryObject queryObject)
+        public async Task<PaginationResult<QueryObjectEverythingRequest>> GetTracesEverythingRequestsAsync(QueryObject queryObject)
         {
             var query = _newsDbContext.EverythingRequests.EagerLoadRelatedObjects().AsQueryable();
 
@@ -64,7 +64,7 @@ namespace Reservation_API.Persistence
             return await PaginationResult<QueryObjectEverythingRequest>.CreateAsync(query, queryObject.Page, queryObject.PageSize);
         }
 
-        public async Task<PaginationResult<QueryObjectTopHeadLinesRequest>> GetTracesTopheadlinesRequests(QueryObject queryObject)
+        public async Task<PaginationResult<QueryObjectTopHeadLinesRequest>> GetTracesTopheadlinesRequestsAsync(QueryObject queryObject)
         {
             var query = _newsDbContext.TopHeadLinesRequests.EagerLoadRelatedObjects().AsQueryable();
 
@@ -92,9 +92,9 @@ namespace Reservation_API.Persistence
             return await _userManager.FindByIdAsync(id.ToString());
         }
 
-        public async Task<PaginationResult<User>> GetUsers(QueryObject queryObject)
+        public async Task<PaginationResult<User>> GetUsersAsync(QueryObject queryObject)
         {
-            var query = _newsDbContext.Users.AsQueryable();            
+            var query = _newsDbContext.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();            
             return await PaginationResult<User>.CreateAsync(query, queryObject.Page, queryObject.PageSize);
         }
 
