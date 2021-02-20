@@ -11,18 +11,18 @@ export class NomenclatorsService {
   constructor(private http : HttpClient) { }
 
   getCountries(){
-    return this.http.get<KeyValuePair>(`${environment.baseUrl}nomenclator/countries`);
+    return this.http.get<KeyValuePair[]>(`${environment.baseUrl}nomenclator/countries`);
   }
 
   getCategories(){
-    return this.http.get<KeyValuePair>(`${environment.baseUrl}nomenclator/categories`);
+    return this.http.get<KeyValuePair[]>(`${environment.baseUrl}nomenclator/categories`);
   }
 
   getLanguages(){
-    return this.http.get<KeyValuePair>(`${environment.baseUrl}nomenclator/languages`);
+    return this.http.get<KeyValuePair[]>(`${environment.baseUrl}nomenclator/languages`);
   }
 
   getSortbys(){
-    return this.http.get<KeyValuePair>(`${environment.baseUrl}nomenclator/sortbys`);
+    return this.http.get<KeyValuePair[]>(`${environment.baseUrl}nomenclator/sortbys`);
   }
 }

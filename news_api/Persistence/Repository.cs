@@ -89,7 +89,9 @@ namespace Reservation_API.Persistence
 
         public async Task<User> GetUserAsync(int id)
         {
-            return await _userManager.FindByIdAsync(id.ToString());
+            return await _userManager.Users
+                     .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
+                     .SingleOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<PaginationResult<User>> GetUsersAsync(QueryObject queryObject)

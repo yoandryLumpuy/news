@@ -14,14 +14,14 @@
                   
           <ng-container matColumnDef="Roles">
             <th mat-header-cell *matHeaderCellDef> Roles </th>
-            <td mat-cell *matCellDef="let element"> {{element.roles.join('|')}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.roles.join(" | ")}} </td>
           </ng-container>        
          
           <ng-container matColumnDef="Button">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element"> 
               <button mat-raised-button color="warn" 
-                 focusable="false"  (click) = "editRoles(element.userName, element.roles)">
+                 focusable="false"  (click) = "editRoles(element)">
                 Edit Roles
               </button>  </td>
           </ng-container>

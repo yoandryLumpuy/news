@@ -9,3 +9,12 @@ export interface NewsRequestEverything{
         language? : number;
         sortBy? : number;        
 }
+
+export const defaultNewsRequestEverything : NewsRequestEverything 
+  = {
+        page: 1,
+        pageSize: 10,
+        q: '',
+        sources: [],
+        domains: []
+    }

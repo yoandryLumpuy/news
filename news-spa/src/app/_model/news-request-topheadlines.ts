@@ -7,3 +7,11 @@ export interface NewsRequestTopheadlines{
     language?: number;
     country?: number; 
 }
+
+export const defaultNewsRequestTopheadlines : NewsRequestTopheadlines 
+  = {
+        page: 1,
+        pageSize: 10,
+        q: '',
+        sources: [] 
+    }

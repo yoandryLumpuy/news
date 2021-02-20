@@ -11,9 +11,10 @@ export class BreakpointObserverService {
 
     constructor(private breakpointObserver : BreakpointObserver) { 
       this.breakpointObserver.observe([
-        Breakpoints.XSmall
+        Breakpoints.XSmall,
+        Breakpoints.Small
       ]).subscribe( (state: BreakpointState) => {
-        this.inSmallScreen.next(state.breakpoints[Breakpoints.XSmall]); 
+        this.inSmallScreen.next(state.breakpoints[Breakpoints.XSmall] || state.breakpoints[Breakpoints.Small]); 
       });
     }
 }

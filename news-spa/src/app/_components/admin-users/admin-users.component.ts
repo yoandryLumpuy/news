@@ -48,12 +48,11 @@ export class AdminUsersComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.paginationResult.items);
   } 
   
-  editRoles(userName: string, roles: string[]){
+  editRoles(user: User){
     var checkBoxData = new Array<CheckBoxData>();
     this.manageUsersService.getAvailableRoles()
     .subscribe(roles => {
-      var userName = this.authService.decodedToken().unique_name;
-      var userRoles = this.authService.decodedToken().role as Array<string>;
+      var userRoles = user.roles;
       roles.forEach(elem => 
         checkBoxData.push({name: elem, checked: userRoles.includes(elem)}));
       this.matDialog.open(EditRolesDialogComponent,
@@ -61,17 +60,16 @@ export class AdminUsersComponent implements OnInit {
           minHeight: '300px',
           minWidth: '300px',
           data: {
-            userName,
+            userName: user.userName,
             roles: checkBoxData
           }
         })
       .afterClosed()
       .pipe(switchMap((newRoles : Array<CheckBoxData>) => {
-        return this.manageUsersService.updateRoles(userName, 
+        return this.manageUsersService.updateRoles(user.userName, 
           newRoles.filter(elem => elem.checked).map(elem => elem.name));
       }))
       .subscribe(res => this.loadDataSourceData());   
      });    
   }
-
 }

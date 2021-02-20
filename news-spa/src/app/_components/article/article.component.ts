@@ -10,6 +10,7 @@ import { Article } from 'src/app/_model/Articles';
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   @Input('article') article: Article;
+
   inSmallScreen = false;
   subscription : Subscription;
 

@@ -21,6 +21,7 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatTabsModule } from "@angular/material/tabs";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
   exports:[
@@ -45,7 +46,8 @@ import { MatTabsModule } from "@angular/material/tabs";
     LayoutModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSidenavModule
   ]
 })
 export class MatModule { }

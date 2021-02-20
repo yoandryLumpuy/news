@@ -13,6 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using news_api.Extensions;
+using Reservation_API.Persistence;
 
 namespace news_api.Controllers
 {
@@ -25,16 +26,19 @@ namespace news_api.Controllers
         private readonly RoleManager<Role> _roleManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
+        private readonly IRepository _repository;
 
         public AuthController(IConfiguration config, UserManager<User> userManager,
                               RoleManager<Role> roleManager,
-                              SignInManager<User> signInManager, IMapper mapper)
+                              SignInManager<User> signInManager, IMapper mapper,
+                              IRepository repository)
         {
             _config = config;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _repository = repository;
         }
 
         [AllowAnonymous]
@@ -50,6 +54,7 @@ namespace news_api.Controllers
 
             if (!signInResult.Succeeded) return Unauthorized("Wrong password!. Try again.");
 
+            user = await _repository.GetUserAsync(user.Id);
             var userToListDto = _mapper.Map<UserForListViewModel>(user);
             return Ok(new
             {

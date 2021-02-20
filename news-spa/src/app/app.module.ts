@@ -1,3 +1,5 @@
+import { MainNavComponent } from './_components/main-nav/main-nav.component';
+import { NewsEverythingSearchComponent } from './_components/news-everything-search/news-everything-search.component';
 import { QueryTracesTopheadlinesRequestsComponent } from './_components/query-traces-topheadlines-requests/query-traces-topheadlines-requests.component';
 import { QueryTracesEverythingRequestsComponent } from './_components/query-traces-everything-requests/query-traces-everything-requests.component';
 import { NewsComponent } from './_components/news/news.component';
@@ -25,6 +27,7 @@ import { UploadProgressInterceptorService } from './_services/upload-progress-in
 import { LoginComponent } from './_components/login/login.component';
 import { EditRolesDialogComponent } from './_components/admin-users/edit-roles-dialog/edit-roles-dialog.component';
 import { ArticleComponent } from './_components/article/article.component';
+import { NewsTopheadlinesComponent } from './_components/news-topheadlines/news-topheadlines.component';
 
 @NgModule({
   declarations: [					
@@ -40,7 +43,10 @@ import { ArticleComponent } from './_components/article/article.component';
       EditRolesDialogComponent,
       QueryTracesEverythingRequestsComponent,
       QueryTracesTopheadlinesRequestsComponent,
-      ArticleComponent
+      ArticleComponent,
+      NewsEverythingSearchComponent,
+      NewsTopheadlinesComponent,
+      MainNavComponent
    ],
   imports: [
     BrowserModule, 
