@@ -46,6 +46,7 @@ export class AuthService {
            .pipe(tap(res => {             
              localStorage.setItem('token', res.token); 
              localStorage.setItem('user', JSON.stringify(res.user));  
+             this.router.navigate(['']);
              this.emitUser(res.user);
              this.configureAutoLogout();                         
             }));
@@ -60,7 +61,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.emitUser(defaultUser);
-    this.router.navigate(['/']);
+    this.router.navigate(['login']);
     if (!!this.timeoutTimer) clearTimeout(this.timeoutTimer);
   }
 

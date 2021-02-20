@@ -1,12 +1,16 @@
 
-  <button mat-raised-button>
-    <mat-icon *ngIf="!searching">search</mat-icon>
-    <mat-icon *ngIf="searching">search_off</mat-icon>
-      Search
-  </button>  
+<mat-grid-list cols="1" rowHeight= "100px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <button mat-raised-button (click) = "searching = !searching">
+      <mat-icon *ngIf="!searching">search</mat-icon>
+      <mat-icon *ngIf="searching">search_off</mat-icon>
+        {{searching ? 'Stop Search' : 'Search'}}
+    </button> 
+  </mat-grid-tile>
+</mat-grid-list>
 
- <form *ngIf="searching" [formGroup] = "form"></form>
-  <mat-grid-list cols="6" rowHeight= "100px">
+ <form [formGroup] = "form"></form>
+  <mat-grid-list *ngIf="searching" cols="6" rowHeight= "100px">
     <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
 
     <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -70,6 +74,20 @@
 <ng-container *ngFor="let a of articlesResult.articles">
   <app-article [article] = "a"></app-article>
 </ng-container>
+
+<mat-grid-list *ngIf="articlesResult.totalResults > 0" cols="6" rowHeight= "100px">
+  <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-paginator style="margin: auto;"
+      [length] = "articlesResult.totalResults"
+      [pageSize] = "topheadlinesRequestParameters.pageSize"
+      [pageSizeOptions] = "[5, 10, 15, 20]"
+      [pageIndex] = "topheadlinesRequestParameters.page"
+      (page) = "onPageChanged($event)"
+    ></mat-paginator>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+</mat-grid-list> 
 
 <mat-grid-list *ngIf="articlesResult.totalResults == 0" cols="1" rowHeight= "100px">
   <mat-grid-tile [colspan]="1" [rowspan]="1"><h1>There are no elements to show!</h1></mat-grid-tile>

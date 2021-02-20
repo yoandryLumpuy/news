@@ -10,7 +10,7 @@ export interface NewsRequestTopheadlines{
 
 export const defaultNewsRequestTopheadlines : NewsRequestTopheadlines 
   = {
-        page: 1,
+        page: 0,
         pageSize: 10,
         q: '',
         sources: [] 

@@ -1,4 +1,3 @@
-import { AlertComponent } from './../_services/alert/alert.component';
 import { AuthService } from './../_services/auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
@@ -16,7 +15,7 @@ export class AuthGuardService implements CanActivate{
     var logguedIn = this.authService.loggedIn;
     if (!logguedIn) 
     {
-      this.router.navigate(['']);
+      this.router.navigate(['login']);
       this.alertService.error('You are not allowed. Please signIn!');
       return false;
     }
@@ -26,7 +25,7 @@ export class AuthGuardService implements CanActivate{
     if (!!arrayOfRoles && arrayOfRoles.length > 0){
       var allowedAccess = this.authService.matchRoles(arrayOfRoles);
       if (!allowedAccess){
-        this.router.navigate(['']);
+        this.router.navigate(['news']);
         this.alertService.error('You are not allowed to access this area for admninistrators!');
       }
       return allowedAccess;

@@ -11,6 +11,6 @@ export const defaultPaginationResult : PaginationResult<any>
         totalPages: 0,
         items: [],
         page: 0,
-        pageSize: 0,
+        pageSize: 10,
         totalItems: 0
       };

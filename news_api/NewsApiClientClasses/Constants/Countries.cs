@@ -8,138 +8,245 @@ namespace NewsApiClientClasses.Constants
 {
     public enum Countries
     {
-        /// <summary>
-        /// Andorra
-        /// </summary>
         AD,
         AE,
-        /// <summary>
-        /// Argentina
-        /// </summary>
+        AF,
+        AG,
+        AI,
+        AL,
+        AM,
+        AN,
+        AO,
+        AQ,
         AR,
-        /// <summary>
-        /// Austria
-        /// </summary>
+        AS,
         AT,
-        /// <summary>
-        /// Australia
-        /// </summary>
         AU,
-        /// <summary>
-        /// Belgium
-        /// </summary>
+        AW,
+        AX,
+        AZ,
+        BA,
+        BB,
+        BD,
         BE,
+        BF,
         BG,
+        BH,
+        BI,
+        BJ,
+        BL,
+        BM,
+        BN,
+        BO,
         BR,
-        /// <summary>
-        /// Canada
-        /// </summary>
+        BS,
+        BT,
+        BV,
+        BW,
+        BY,
+        BZ,
         CA,
+        CC,
+        CF,
+        CG,
         CH,
-        /// <summary>
-        /// China
-        /// </summary>
+        CI,
+        CK,
+        CL,
+        CM,
         CN,
         CO,
+        CR,
         CU,
-        /// <summary>
-        /// Czech Republic
-        /// </summary>
+        CV,
+        CX,
+        CY,
         CZ,
-        /// <summary>
-        /// Germany
-        /// </summary>
         DE,
-        /// <summary>
-        /// Egypt
-        /// </summary>
+        DJ,
+        DK,
+        DM,
+        DO,
+        DZ,
+        EC,
+        EE,
         EG,
-        /// <summary>
-        /// France
-        /// </summary>
+        EH,
+        ER,
+        ES,
+        ET,
+        FI,
+        FJ,
+        FK,
+        FM,
+        FO,
         FR,
-        /// <summary>
-        /// United Kingdom
-        /// </summary>
+        GA,
         GB,
-        /// <summary>
-        /// Greece
-        /// </summary>
+        GD,
+        GE,
+        GF,
+        GG,
+        GH,
+        GI,
+        GL,
+        GM,
+        GN,
+        GP,
+        GQ,
         GR,
-        /// <summary>
-        /// Hong Kong
-        /// </summary>
+        GS,
+        GT,
+        GU,
+        GW,
+        GY,
         HK,
-        /// <summary>
-        /// Hungary
-        /// </summary>
+        HM,
+        HN,
+        HR,
+        HT,
         HU,
         ID,
-        /// <summary>
-        /// Ireland
-        /// </summary>
         IE,
         IL,
+        IM,
         IN,
-        /// <summary>
-        /// Italy
-        /// </summary>
+        IO,
+        IQ,
+        IR,
+        IS,
         IT,
-        /// <summary>
-        /// Japan
-        /// </summary>
+        JE,
+        JM,
+        JO,
         JP,
-        /// <summary>
-        /// South Korea
-        /// </summary>
+        KE,
+        KG,
+        KH,
+        KI,
+        KM,
+        KN,
+        KP,
         KR,
+        KW,
+        KY,
+        KZ,
+        LA,
+        LB,
+        LC,
+        LI,
+        LK,
+        LR,
+        LS,
         LT,
+        LU,
         LV,
+        LY,
         MA,
-        /// <summary>
-        /// Mexico
-        /// </summary>
+        MC,
+        MD,
+        ME,
+        MG,
+        MH,
+        MK,
+        ML,
+        MM,
+        MN,
+        MO,
+        MQ,
+        MR,
+        MS,
+        MT,
+        MU,
+        MV,
+        MW,
         MX,
         MY,
+        MZ,
+        NA,
+        NC,
+        NE,
+        NF,
         NG,
-        /// <summary>
-        /// Netherlands
-        /// </summary>
+        NI,
         NL,
-        /// <summary>
-        /// Norway
-        /// </summary>
         NO,
-        /// <summary>
-        /// New Zealand
-        /// </summary>
+        NP,
+        NR,
+        NU,
         NZ,
+        OM,
+        PA,
+        PE,
+        PF,
+        PG,
         PH,
+        PK,
         PL,
-        /// <summary>
-        /// Portugal
-        /// </summary>
+        PM,
+        PN,
+        PR,
+        PS,
         PT,
+        PW,
+        PY,
+        QA,
+        RE,
         RO,
         RS,
-        /// <summary>
-        /// Russia
-        /// </summary>
         RU,
+        RW,
         SA,
+        SB,
+        SC,
+        SD,
         SE,
         SG,
+        SH,
         SI,
+        SJ,
         SK,
+        SL,
+        SM,
+        SN,
+        SO,
+        SR,
+        ST,
+        SV,
+        SY,
+        SZ,
+        TC,
+        TD,
+        TF,
+        TG,	
         TH,
+        TZ,
+        TJ,
+        TK,
+        TL,
+        TM,
+        TN,
+        TO,
         TR,
+        TT,
+        TV,
         TW,
         UA,
-        /// <summary>
-        /// United States
-        /// </summary>
+        UG,
         US,
+        UY,
+        UZ,
+        VA,
+        VC,
         VE,
-        ZA
+        VG,
+        VI,
+        VN,
+        VU,
+        WF,
+        WS,
+        YE,
+        YT,
+        ZA,
     }
 }

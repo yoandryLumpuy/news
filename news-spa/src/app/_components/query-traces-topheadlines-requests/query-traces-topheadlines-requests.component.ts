@@ -67,7 +67,8 @@ export class QueryTracesTopheadlinesRequestsComponent implements OnInit {
 
   onSortChange($event : Sort){
       this.queryObject.sortBy = $event.active;
-      this.queryObject.isSortAscending = $event.direction == 'asc';  
+      this.queryObject.isSortAscending = $event.direction == 'asc'; 
+      this.queryObject.page = 0; 
       this.loadPaginatedData();
   }
 }

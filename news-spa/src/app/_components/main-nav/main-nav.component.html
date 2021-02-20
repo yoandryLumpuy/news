@@ -11,7 +11,8 @@
       <a mat-list-item [routerLink]="['users']" (click)="drawer.toggle()" *userWithRoles="['Admin']">
         <mat-icon>manage_accounts</mat-icon>Manage Users</a>
 
-      <a mat-list-item href="#" (click)="drawer.toggle()">Link 3</a>
+      <a mat-list-item [routerLink]="['traces']" (click)="drawer.toggle()" *userWithRoles="['Admin']">
+        <mat-icon>track_changes</mat-icon>User's query traces</a>
 
       <a mat-list-item *ngIf="!!(authService.user | async) && (authService.user | async)!.id != 0" 
          (click)="authService.logout(); drawer.toggle();"><mat-icon>logout</mat-icon>Logout</a>

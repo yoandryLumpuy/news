@@ -12,7 +12,7 @@ export interface NewsRequestEverything{
 
 export const defaultNewsRequestEverything : NewsRequestEverything 
   = {
-        page: 1,
+        page: 0,
         pageSize: 10,
         q: '',
         sources: [],

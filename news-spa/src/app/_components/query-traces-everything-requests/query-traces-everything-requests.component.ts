@@ -2,7 +2,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Subscription } from 'rxjs';
 import { NewsQueryTracerService } from './../../_services/news-query-tracer.service';
 import { QueryObjectEverythingRequest } from './../../_model/query-object-everything-request';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { defaultPaginationResult, PaginationResult } from 'src/app/_model/paginationResult.interface';
 import { defaultQueryObject, QueryObject } from 'src/app/_model/queryObject.interface';
@@ -14,7 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './query-traces-everything-requests.component.html',
   styleUrls: ['./query-traces-everything-requests.component.css']
 })
-export class QueryTracesEverythingRequestsComponent implements OnInit {
+export class QueryTracesEverythingRequestsComponent implements OnInit, OnDestroy {
   public SortByCreatedByUser = "CreatedByUser";
   public SortByCreatedAt = "CreatedAt";
   public SortByQ = "Q";
@@ -22,7 +22,9 @@ export class QueryTracesEverythingRequestsComponent implements OnInit {
   public ColumnNameDomains = "Domains";
   public SortByFromDatetime = "From";
   public SortByToDatetime = "To";
-  public SortByLanguage = "Language";  
+  public SortByLanguage = "Language"; 
+
+  subscription : Subscription;
   
 
   paginationResult : PaginationResult<QueryObjectEverythingRequest> = defaultPaginationResult;
@@ -42,11 +44,11 @@ export class QueryTracesEverythingRequestsComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   ngOnInit() {         
-    this.loadPaginatedData();  
+    this.loadPaginatedData();      
   } 
 
   updateDataSource(){
@@ -60,17 +62,21 @@ export class QueryTracesEverythingRequestsComponent implements OnInit {
     this.loadPaginatedData();
   }    
 
-  loadPaginatedData(){      
-    this.newsQueryTracerService.getTracesEverythingRequests(this.queryObject)
-    .subscribe(paginatedResult => {
-      this.paginationResult = paginatedResult;
-      this.updateDataSource();
-    });
+  loadPaginatedData(){  
+    if (!!this.subscription)  this.subscription.unsubscribe();
+    this.subscription =
+      this.newsQueryTracerService.getTracesEverythingRequests(this.queryObject)
+      .subscribe(paginatedResult => {
+        this.paginationResult = paginatedResult;
+        console.log(this.paginationResult);
+        this.updateDataSource();
+      });
   }
 
   onSortChange($event : Sort){
       this.queryObject.sortBy = $event.active;
       this.queryObject.isSortAscending = $event.direction == 'asc';  
+      this.queryObject.page = 0; 
       this.loadPaginatedData();
   }
 }

@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { defaultPaginationResult, PaginationResult } from 'src/app/_model/paginationResult.interface';
 import { defaultQueryObject, QueryObject } from 'src/app/_model/queryObject.interface';
 import { User } from 'src/app/_model/user.interface';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-admin-users',
@@ -66,6 +67,7 @@ export class AdminUsersComponent implements OnInit {
         })
       .afterClosed()
       .pipe(switchMap((newRoles : Array<CheckBoxData>) => {
+        if (!newRoles) return of();        
         return this.manageUsersService.updateRoles(user.userName, 
           newRoles.filter(elem => elem.checked).map(elem => elem.name));
       }))

@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './_components/login/login.component';
 
 const routes: Routes = [
-  {path: '', component: AdminUsersComponent}, 
+  {path: '', component: NewsComponent}, 
   {
     path: '',
     runGuardsAndResolvers: 'always',
