@@ -7,7 +7,7 @@ export class MyErrorHandler implements ErrorHandler {
     constructor(private alertService: AlertService){}
 
     handleError(error: any): void {
-        if (error.status == 401 || error.status == 404) return;
+        if (error.status == 401) return;
         let errorsSummary = '';
         if (error instanceof HttpErrorResponse){           
            if (error.error instanceof Array){
