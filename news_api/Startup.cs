@@ -13,12 +13,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using news_api.Core;
 using news_api.Core.Model;
@@ -45,9 +42,7 @@ namespace news_api
             services.AddControllers();
             services.AddDbContext<NewsDbContext>(dbContextOptionsBuilder =>
             {
-                dbContextOptionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-                    //for use of paginatedQueries in sqlserver 2008 because of compatibility issues of net core 5 with sqlserver 2008
-                    .ReplaceService<IQueryTranslationPostprocessorFactory, SqlServer2008QueryTranslationPostprocessorFactory>();
+                dbContextOptionsBuilder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));                   
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
