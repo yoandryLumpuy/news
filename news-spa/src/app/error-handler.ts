@@ -7,6 +7,7 @@ export class MyErrorHandler implements ErrorHandler {
     constructor(private alertService: AlertService){}
 
     handleError(error: any): void {
+        if (error.status == 401 || error.status == 404) return;
         let errorsSummary = '';
         if (error instanceof HttpErrorResponse){           
            if (error.error instanceof Array){
@@ -16,7 +17,7 @@ export class MyErrorHandler implements ErrorHandler {
            if (typeof(error.error) == 'string') 
             errorsSummary += error.error;                  
         }        
-        this.alertService.error(errorsSummary || error.error?.statusText || 'An error has occured !');
+        this.alertService.error(errorsSummary || error.statusText || 'An error has occured !');
         console.log(error);        
     }
 }

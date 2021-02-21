@@ -66,10 +66,10 @@ namespace news_api.Controllers
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody]UserForLoginViewModel userForLoginDto)
+        public async Task<IActionResult> Register([FromBody]UserForRegisterViewModel userForRegisterViewModel)
         {
-            var userApp = _mapper.Map<User>(userForLoginDto);
-            var identityResult = await _userManager.CreateAsync(userApp, userForLoginDto.Password);
+            var userApp = _mapper.Map<User>(userForRegisterViewModel);
+            var identityResult = await _userManager.CreateAsync(userApp, userForRegisterViewModel.Password);
 
             if (identityResult.Succeeded)
             {

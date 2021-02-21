@@ -1,3 +1,4 @@
+import { RegisterComponent } from './_components/register/register.component';
 import { NewsComponent } from './_components/news/news.component';
 import { AdminUsersComponent } from './_components/admin-users/admin-users.component';
 import { QueryTracesComponent } from './_components/query-traces/query-traces.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
     ]
   },
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}       
 ];
 

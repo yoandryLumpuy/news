@@ -1,3 +1,4 @@
+import { RegisterComponent } from './_components/register/register.component';
 import { MainNavComponent } from './_components/main-nav/main-nav.component';
 import { NewsEverythingSearchComponent } from './_components/news-everything-search/news-everything-search.component';
 import { QueryTracesTopheadlinesRequestsComponent } from './_components/query-traces-topheadlines-requests/query-traces-topheadlines-requests.component';
@@ -31,22 +32,23 @@ import { NewsTopheadlinesComponent } from './_components/news-topheadlines/news-
 
 @NgModule({
   declarations: [					
-      AppComponent,
-      UserWithRolesDirective,
-      AlertComponent, 
-      ConfirmDialogComponent,
-      StringsLimitedPipe,
-      LoginComponent, 
       AdminUsersComponent,
-      QueryTracesComponent,
-      NewsComponent,
+      AlertComponent, 
+      AppComponent,
+      ArticleComponent,
+      ConfirmDialogComponent,
       EditRolesDialogComponent,
+      LoginComponent,
+      MainNavComponent,
+      NewsComponent,
+      NewsEverythingSearchComponent,
+      NewsTopheadlinesComponent, 
+      QueryTracesComponent,
       QueryTracesEverythingRequestsComponent,
       QueryTracesTopheadlinesRequestsComponent,
-      ArticleComponent,
-      NewsEverythingSearchComponent,
-      NewsTopheadlinesComponent,
-      MainNavComponent
+      RegisterComponent, 
+      StringsLimitedPipe,
+      UserWithRolesDirective  
    ],
   imports: [
     BrowserModule, 

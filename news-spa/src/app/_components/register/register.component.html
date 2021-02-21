@@ -1,0 +1,74 @@
+
+<form (ngSubmit) = "register()" #form = "ngForm">    
+  <mat-grid-list cols="1" [rowHeight] = "100">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field 
+          appearance="outline">
+           <mat-label> User Name </mat-label>
+           <input matInput 
+             required
+             name = "userName"
+             #userName
+             [(ngModel)] = "model.userName"
+             required placeholder="User Name"
+             value="">
+           <mat-hint> Type the user </mat-hint>
+           <mat-error > The user is required </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+  
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label> Password </mat-label>
+        <input matInput 
+          required 
+          name = "password"
+          [(ngModel)] = "model.password" 
+          type="password"
+          value="">  
+        <mat-hint> Type a strong password </mat-hint>        
+        <mat-error> Password is required </mat-error>
+    </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Language</mat-label>
+        <mat-select 
+          name="language" 
+          required
+          [(ngModel)] = "model.language">
+          <mat-option *ngFor="let l of languages" [value]="l.key">
+            {{l.value}}
+          </mat-option>
+        </mat-select>
+        <mat-hint> Select your language </mat-hint>        
+        <mat-error> Language is required </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <mat-select 
+          name="country" 
+          required
+          [(ngModel)] = "model.country">
+          <mat-option *ngFor="let c of countries" [value]="c.key">
+            {{c.value}}
+          </mat-option>
+        </mat-select>
+        <mat-hint> Select your country </mat-hint>        
+        <mat-error> Country is required </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button mat-raised-button type="submit" color= "primary"         
+        [disabled] = "form.touched && form.invalid"> Register </button>
+
+      <button mat-raised-button type="button" (click)="onCancel()" color = "warn"> Cancel </button>
+    </mat-grid-tile> 
+  </mat-grid-list>
+</form>
+

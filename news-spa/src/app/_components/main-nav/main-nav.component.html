@@ -3,10 +3,17 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"      
       [mode]="'over'"
       [opened]="false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Menu</mat-toolbar>    
     <mat-nav-list>
+      <a mat-list-item *ngIf="!!(authService.user | async) && (authService.user | async)!.id != 0" 
+        [routerLink]="['news']" (click)="drawer.toggle()">
+        <mat-icon>upcoming</mat-icon>News</a>
+
       <a mat-list-item *ngIf="!(authService.user | async) || (authService.user | async)!.id == 0" 
          [routerLink]="['login']" (click)="drawer.toggle()"><mat-icon>login</mat-icon>Login</a>
+
+      <a mat-list-item [routerLink]="['register']" (click)="drawer.toggle()">
+          <mat-icon>app_registration</mat-icon>Register</a>   
 
       <a mat-list-item [routerLink]="['users']" (click)="drawer.toggle()" *userWithRoles="['Admin']">
         <mat-icon>manage_accounts</mat-icon>Manage Users</a>
@@ -21,15 +28,23 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>News</span>
+      <mat-toolbar-row>
+        <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>News Project</span>
+      </mat-toolbar-row>      
+      <mat-toolbar-row>
+        <span class="spacer"></span>
+        <span>{{bannerStructure.centeredText}}</span>
+        <span class="spacer"></span>
+      </mat-toolbar-row>      
     </mat-toolbar>
+
     <!-- Add Content Here -->
     <div style="margin-top: 50px;"> 
       <router-outlet></router-outlet>

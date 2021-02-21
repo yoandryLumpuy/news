@@ -1,3 +1,4 @@
+import { BannerStructureService } from './../../_services/banner-structure.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bannerStructureService: BannerStructureService) { }
 
   ngOnInit() {
+    this.bannerStructureService.updateBanner({centeredText: 'News'});
   }
 
 }

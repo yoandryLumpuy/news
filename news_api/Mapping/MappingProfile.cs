@@ -13,7 +13,8 @@ namespace Reservation_API.Mapping
         public MappingProfile()
         {
             //from View Model to Domain Model 
-            CreateMap<UserForLoginViewModel, User>();             
+            CreateMap<UserForLoginViewModel, User>();  
+            CreateMap<UserForRegisterViewModel, User>();           
             CreateMap<EverythingRequest, QueryObjectEverythingRequest>()                
                 .ForMember(target => target.Sources, 
                     opt => opt.MapFrom(source => source.Sources == null || source.Sources.Count == 0 
@@ -24,7 +25,8 @@ namespace Reservation_API.Mapping
                                                  ? string.Empty 
                                                  : string.Join(',', source.Domains)))
                 .ForMember(target => target.Language, 
-                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty : source.Language.ToString()))
+                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty 
+                                                     : Constants.GetLanguageNameByEnum(source.Language.Value)))
                 .ForMember(target => target.SortBy,  
                         opt => opt.MapFrom(source => !source.SortBy.HasValue ? string.Empty : source.SortBy.ToString()));
 
@@ -35,11 +37,13 @@ namespace Reservation_API.Mapping
                                                  ? string.Empty 
                                                  : string.Join(',', source.Sources)))
                 .ForMember(target => target.Language, 
-                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty : source.Language.ToString()))
+                        opt => opt.MapFrom(source => !source.Language.HasValue ? string.Empty 
+                                                     : Constants.GetLanguageNameByEnum(source.Language.Value)))
                 .ForMember(target => target.Category, 
                         opt => opt.MapFrom(source => !source.Category.HasValue ? string.Empty : source.Category.ToString()))
                 .ForMember(target => target.Country, 
-                        opt => opt.MapFrom(source => !source.Country.HasValue ? string.Empty : source.Country.ToString()));
+                        opt => opt.MapFrom(source => !source.Country.HasValue ? string.Empty 
+                                                     : Constants.GetCountryNameByEnum(source.Country.Value)));
 
 
             //from Domain Model to View Model    
@@ -56,7 +60,7 @@ namespace Reservation_API.Mapping
                                                         : string.Empty))
                 .ForMember(articleResultDto => articleResultDto.Status, 
                     opt => opt.MapFrom(articleResult => 
-                        ExtensionMethods.GetEnumStringValues<Statuses>().FirstOrDefault(elem => (Statuses)elem.Key == articleResult.Status).Value));
+                        ExtensionMethods.GetKeyValuePairsFromEnum<Statuses>().FirstOrDefault(elem => (Statuses)elem.Key == articleResult.Status).Value));
 
             CreateMap<QueryObjectEverythingRequest, QueryObjectEverythingRequestViewModel>()
                 .ForMember(target => target.CreatedByUser, opt => opt.MapFrom(source => source.CreatedByUser.UserName));

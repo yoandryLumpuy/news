@@ -1,3 +1,4 @@
+import { BannerStructureService } from './../../_services/banner-structure.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { switchMap } from 'rxjs/operators';
 import { ManageUsersService } from './../../_services/manage-users.service';
@@ -26,9 +27,11 @@ export class AdminUsersComponent implements OnInit {
 
   constructor(private matDialog : MatDialog, 
       private manageUsersService: ManageUsersService,
-      private authService : AuthService) { } 
+      private authService : AuthService,
+      private bannerStructureService: BannerStructureService) { } 
 
   ngOnInit(): void {
+    this.bannerStructureService.updateBanner({centeredText: 'Administrate User Roles'});
     this.loadDataSourceData();
   }
 

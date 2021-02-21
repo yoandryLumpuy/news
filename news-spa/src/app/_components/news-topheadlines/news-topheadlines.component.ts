@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/_services/auth.service';
 import { ArticlesResult, defaultArticlesResult } from './../../_model/ArticlesResult';
 import { NewsService } from './../../_services/news.service';
 import { NewsRequestTopheadlines, defaultNewsRequestTopheadlines } from './../../_model/news-request-topheadlines';
@@ -24,6 +25,7 @@ export class NewsTopheadlinesComponent implements OnInit, OnDestroy {
   articlesResult : ArticlesResult = defaultArticlesResult;
   
   newsServiceSubscription: Subscription;
+  authServiceSubscription: Subscription;
 
   form = new FormGroup({
     q: new FormControl('', Validators.required),        
@@ -33,10 +35,12 @@ export class NewsTopheadlinesComponent implements OnInit, OnDestroy {
   });
  
   constructor(private nomenclatorsService: NomenclatorsService, 
-    private alertService: AlertService, private newsService: NewsService) { }
+    private alertService: AlertService, private newsService: NewsService,
+    private authService : AuthService) { }
 
   ngOnDestroy(): void {
     if (this.newsServiceSubscription) this.newsServiceSubscription.unsubscribe();
+    if (this.authServiceSubscription) this.authServiceSubscription.unsubscribe();
   }
 
   get q(){
@@ -67,29 +71,40 @@ export class NewsTopheadlinesComponent implements OnInit, OnDestroy {
     }, 
     error => this.alertService.error('There was error retreiving data!'));
 
-    this.q.valueChanges.subscribe(value => {        
+    this.authServiceSubscription 
+      = this.authService.user.subscribe(user => {
+          this.form.setValue({
+            ...this.form.value,
+            language: user.language,
+            country: user.country
+          });
+          this.topheadlinesRequestParameters.language = user.language;
+          this.topheadlinesRequestParameters.country = user.country;
+          this.loadTopheadlines();
+      });
+
+    this.q.valueChanges.subscribe(value => { 
+        this.topheadlinesRequestParameters.q = value;
         this.loadTopheadlines();
     });
 
-    this.category.valueChanges.subscribe(value => {        
+    this.category.valueChanges.subscribe(value => { 
+      this.topheadlinesRequestParameters.category = value;     
       this.loadTopheadlines();
     });
 
-    this.language.valueChanges.subscribe(value => {        
+    this.language.valueChanges.subscribe(value => { 
+      this.topheadlinesRequestParameters.language = value;    
       this.loadTopheadlines();
     });
 
-    this.country.valueChanges.subscribe(value => {        
+    this.country.valueChanges.subscribe(value => {  
+      this.topheadlinesRequestParameters.country = value;    
       this.loadTopheadlines();
     });
   }
 
   loadTopheadlines(){
-    this.topheadlinesRequestParameters = {
-      ...this.topheadlinesRequestParameters,
-      ...this.form.value
-    }
-
     if (this.newsServiceSubscription) this.newsServiceSubscription.unsubscribe();
     this.newsServiceSubscription = this.newsService.getTopheadlines(this.topheadlinesRequestParameters)
     .subscribe(res =>

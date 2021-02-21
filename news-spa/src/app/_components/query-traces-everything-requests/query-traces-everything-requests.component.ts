@@ -68,7 +68,6 @@ export class QueryTracesEverythingRequestsComponent implements OnInit, OnDestroy
       this.newsQueryTracerService.getTracesEverythingRequests(this.queryObject)
       .subscribe(paginatedResult => {
         this.paginationResult = paginatedResult;
-        console.log(this.paginationResult);
         this.updateDataSource();
       });
   }

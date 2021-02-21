@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/_services/auth.service';
 import { NewsRequestEverything, defaultNewsRequestEverything } from './../../_model/news-request-everything';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { KeyValuePair } from 'src/app/_model/KeyValuePair';
@@ -23,6 +24,7 @@ export class NewsEverythingSearchComponent implements OnInit, OnDestroy {
   articlesResult : ArticlesResult = defaultArticlesResult;
   
   newsServiceSubscription: Subscription;
+  authServiceSubscription: Subscription;
 
   form = new FormGroup({
     q: new FormControl('', Validators.required),        
@@ -33,7 +35,8 @@ export class NewsEverythingSearchComponent implements OnInit, OnDestroy {
   });
  
   constructor(private nomenclatorsService: NomenclatorsService, 
-    private alertService: AlertService, private newsService: NewsService) { }
+    private alertService: AlertService, private newsService: NewsService,
+    private authService : AuthService) { }
 
   ngOnDestroy(): void {
     if (this.newsServiceSubscription) this.newsServiceSubscription.unsubscribe();
@@ -69,42 +72,52 @@ export class NewsEverythingSearchComponent implements OnInit, OnDestroy {
     }, 
     error => this.alertService.error('There was error retreiving data!'));
 
-    this.q.valueChanges.subscribe(value => {        
-        this.loadEverything();
+    this.authServiceSubscription 
+      = this.authService.user.subscribe(user => {
+          this.form.setValue({
+            ...this.form.value,
+            language: user.language
+          });
+          this.everythingRequestParameters.language = user.language;
+          this.loadNews();
+      });
+
+    this.q.valueChanges.subscribe(value => { 
+        this.everythingRequestParameters.q = value;       
+        this.loadNews();
     });
 
-    this.from.valueChanges.subscribe(value => {        
-      this.loadEverything();
+    this.from.valueChanges.subscribe(value => { 
+      this.everythingRequestParameters.from = value;       
+      this.loadNews();
     });
 
-    this.to.valueChanges.subscribe(value => {        
-      this.loadEverything();
+    this.to.valueChanges.subscribe(value => {  
+      this.everythingRequestParameters.to = value;      
+      this.loadNews();
     });
 
     this.language.valueChanges.subscribe(value => {        
-      this.loadEverything();
+      this.everythingRequestParameters.language = value;
+      this.loadNews();
     });
 
-    this.sortBy.valueChanges.subscribe(value => {        
-      this.loadEverything();
+    this.sortBy.valueChanges.subscribe(value => {    
+      this.everythingRequestParameters.sortBy = value;    
+      this.loadNews();
     });
   }
 
-  loadEverything(){
-    this.everythingRequestParameters = {
-      ...this.everythingRequestParameters,
-      ...this.form.value
-    }
-
-    if (this.newsServiceSubscription) this.newsServiceSubscription.unsubscribe();
+  loadNews(){
+    if (this.newsServiceSubscription) this.newsServiceSubscription.unsubscribe();    
     this.newsServiceSubscription = this.newsService.getEverything(this.everythingRequestParameters)
-    .subscribe(res =>
-      this.articlesResult = res);
+      .subscribe(res =>
+        this.articlesResult = res);
   };
 
   onPageChanged($event: PageEvent){   
     this.everythingRequestParameters.page = $event.pageIndex;
     this.everythingRequestParameters.pageSize = $event.pageSize;
-    this.loadEverything();
+    this.loadNews();
   }
 }
