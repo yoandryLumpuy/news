@@ -1,7 +1,7 @@
 import { BannerStructure, defaultBannerStructure } from './../../_model/Constants';
 import { BannerStructureService } from './../../_services/banner-structure.service';
 import { AuthService } from './../../_services/auth.service';
-import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent implements OnInit{
+export class MainNavComponent implements OnInit, OnDestroy{
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -25,6 +25,11 @@ export class MainNavComponent implements OnInit{
 
   constructor(private breakpointObserver: BreakpointObserver, public authService : AuthService,
      private bannerStructureService: BannerStructureService, private cdRef: ChangeDetectorRef) {}
+
+  ngOnDestroy(): void {
+    if (!!this.bannerStructureServiceSubscription) 
+      this.bannerStructureServiceSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.bannerStructureServiceSubscription 

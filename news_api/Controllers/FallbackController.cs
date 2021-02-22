@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.IO;
 
-namespace Reservation_API.Controllers
+namespace news_api.Controllers
 {
     public class FallbackController : ControllerBase
     {
