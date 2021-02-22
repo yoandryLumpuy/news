@@ -36,7 +36,7 @@ export class NewsEverythingSearchComponent implements OnInit, OnDestroy {
  
   constructor(private nomenclatorsService: NomenclatorsService, 
     private alertService: AlertService, private newsService: NewsService,
-    private authService : AuthService) { }
+    private authService : AuthService) { }  
 
   ngOnDestroy(): void {
     if (this.newsServiceSubscription) this.newsServiceSubscription.unsubscribe();
@@ -79,7 +79,6 @@ export class NewsEverythingSearchComponent implements OnInit, OnDestroy {
             language: user.language
           });
           this.everythingRequestParameters.language = user.language;
-          this.loadNews();
       });
 
     this.q.valueChanges.subscribe(value => { 

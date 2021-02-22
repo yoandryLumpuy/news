@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace news_api.Migrations
 {
-    public partial class InitialMigrationForUseWithSqlite : Migration
+    public partial class InitialMigrationBackToDotnetCore5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

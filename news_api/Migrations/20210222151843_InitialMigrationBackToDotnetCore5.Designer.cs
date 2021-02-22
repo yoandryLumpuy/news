@@ -9,8 +9,8 @@ using news_api.Persistence;
 namespace news_api.Migrations
 {
     [DbContext(typeof(NewsDbContext))]
-    [Migration("20210222035238_InitialMigrationForUseWithSqlite")]
-    partial class InitialMigrationForUseWithSqlite
+    [Migration("20210222151843_InitialMigrationBackToDotnetCore5")]
+    partial class InitialMigrationBackToDotnetCore5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
